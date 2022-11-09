@@ -1,3 +1,7 @@
 django
 djangorestframework
+<<<<<<< HEAD
 knox
+=======
+knox
+>>>>>>> 9b84bc9ec16d88e23d6c5d4cb55fb722031ed403
