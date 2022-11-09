@@ -149,10 +149,11 @@ REST_FRAMEWORK = {
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.mailtrap.io'
-EMAIL_HOST_USER = 'a96ec1a59b9647'
-EMAIL_HOST_PASSWORD = 'f0ea0bf8fda6b3'
-EMAIL_PORT = '2525'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = '	almaztestdjango@gmail.com'
+EMAIL_HOST_PASSWORD = 'deiwwxgighbnhpxf'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
 
 # DJOSER = {
 #     'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
