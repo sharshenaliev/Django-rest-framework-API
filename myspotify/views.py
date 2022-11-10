@@ -1,4 +1,4 @@
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, filters
 from rest_framework.reverse import reverse
 from rest_framework.response import Response
 from .models import Favorites
@@ -87,10 +87,11 @@ class EmailCheckView(generics.GenericAPIView):
 
 
 class MusicListView(generics.ListAPIView):
-    serializer_class = MusicListSerializer
-    filter_backens = (DjangoFilterBackend,)
-    filterset_class = MusicFilter
     permission_classes = [permissions.AllowAny]
+    serializer_class = MusicListSerializer
+    filter_backens = (DjangoFilterBackend, filters.SearchFilter)
+    filterset_class = MusicFilter
+    search_fields = ['$name']
 
     def get_queryset(self):
         music = Music.objects.all()
@@ -108,7 +109,6 @@ class MusicListView(generics.ListAPIView):
         path = request.get_full_path()
         path = path.split('/')
         link = list(filter(None, path))
-        print(link)
         data = {
             'message': message,
             'url': reverse(link[-1], request=request)
@@ -116,17 +116,7 @@ class MusicListView(generics.ListAPIView):
         return Response(data)
 
 
-class MusicDetailView(generics.ListAPIView):
-    def get(self, request, music_id):
-        music = Music.objects.get(id=music_id)
-        serializer = MusicDetailSerializer(music)
-        return Response(serializer.data)
-
-
-class MusicFavouriteListView(generics.ListAPIView):
-    serializer_class = MusicListSerializer
-    filter_backens = (DjangoFilterBackend,)
-    filterset_class = MusicFilter
+class MusicFavouriteListView(MusicListView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):

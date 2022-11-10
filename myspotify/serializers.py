@@ -3,19 +3,12 @@ from .models import Music, CustomUser
 
 
 class MusicListSerializer(serializers.ModelSerializer):
-    id = serializers.CharField(required=True)
+    id = serializers.CharField(required=False)
 
     class Meta:
         model = Music
-        fields = ('id', 'name', 'author')
-        extra_kwargs = {'author': {'read_only': True},
-                        'name': {'read_only': True}}
-
-
-class MusicDetailSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Music
-        fields = ('name', 'author', 'album', 'genre', 'year_published', 'image', 'audio')
+        fields = ('id', 'name', 'author', 'album', 'genre', 'year_published', 'image', 'audio')
+        read_only_fields = ('name', 'author', 'album', 'genre', 'year_published', 'image', 'audio')
 
 
 class UserSerializer(serializers.ModelSerializer):

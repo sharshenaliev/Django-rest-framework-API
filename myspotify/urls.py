@@ -9,7 +9,6 @@ urlpatterns = [
     path('emailcheck/', EmailCheckView.as_view(), name='email_check'),
     path('user/<int:user_id>/', ResetPasswordView.as_view(), name='password_reset'),
     path('music/', MusicListView.as_view(), name='music'),
-    path('music/<int:music_id>/', MusicDetailView.as_view(), name='music_detail'),
     path('music/favorites/', MusicFavouriteListView.as_view(), name='favorites'),
     path('music/popular', MusicPopularListView.as_view(), name='popular'),
     path('music/new', MusicNewListView.as_view(), name='new'),

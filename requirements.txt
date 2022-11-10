@@ -1,6 +1,8 @@
 django
 djangorestframework
 Pillow
-knox
+django-rest-knox
 django-filter
 jinja2
+cryptography
+boto3

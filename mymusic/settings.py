@@ -143,6 +143,7 @@ REST_FRAMEWORK = {
 #       'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_FILTER_BACKENDS': (
+        'rest_framework.filters.SearchFilter',
         'django_filters.rest_framework.DjangoFilterBackend',
     ),
     "EXCEPTION_HANDLER": "myspotify.exceptions.django_error_handler",
