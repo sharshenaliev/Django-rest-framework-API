@@ -6,3 +6,4 @@ django-filter
 jinja2
 cryptography
 boto3
+psycopg2-binary
