@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser, Music, Gender, Favorites
+from .models import CustomUser, Music, Favorites
 
 
 class CustomUserAdmin(UserAdmin):
@@ -16,12 +16,6 @@ class MusicAdmin(admin.ModelAdmin):
     list_filter = ('author', 'genre', 'name')
 
 
-class GenderAdmin(admin.ModelAdmin):
-    model = Gender
-    list_display = ('id', 'name')
-    list_display_links = ('id', 'name')
-
-
 class FavouritesAdmin(admin.ModelAdmin):
     model = Favorites
     list_display = ('id', 'user', 'song')
@@ -30,5 +24,4 @@ class FavouritesAdmin(admin.ModelAdmin):
 
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Music, MusicAdmin)
-admin.site.register(Gender, GenderAdmin)
 admin.site.register(Favorites, FavouritesAdmin)

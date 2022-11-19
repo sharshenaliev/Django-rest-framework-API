@@ -9,19 +9,16 @@ def validate(username):
         raise ValidationError("Wrong gmail")
 
 
-class Gender(models.Model):
-    name = models.CharField(max_length=10)
-
-    def __str__(self):
-        return self.name
-
-
 class CustomUser(AbstractUser):
     username = models.EmailField(max_length=50, verbose_name='gmail', unique=True, validators=[
         EmailValidator(allowlist=['gmail.com']),
         validate])
-    gender = models.ForeignKey(Gender, on_delete=models.PROTECT, null=True)
     age = models.IntegerField(null=True, validators=[MinValueValidator(limit_value=1)])
+    GENDER_CHOICES = (
+        ('female', 'женский'),
+        ('male', 'мужской'),
+    )
+    gender = models.CharField(max_length=10, choices=GENDER_CHOICES, null=True)
     REQUIRED_FIELDS = ['first_name', ]
                       #['gender', 'age']
 
@@ -47,4 +44,3 @@ class Music(models.Model):
 class Favorites(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.PROTECT)
     song = models.ForeignKey(Music, on_delete=models.PROTECT)
-
