@@ -21,7 +21,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('myspotify.urls'), name='home'),
+    path('', include('myspotify.urls')),
+    path('', include('frontend.urls')),
     path('api-auth', include('rest_framework.urls')),
 #    path('auth/', include('djoser.urls')),
 #    path('auth/', include('djoser.urls.authtoken')),

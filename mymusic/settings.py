@@ -26,8 +26,7 @@ SECRET_KEY = 'django-insecure-p@16&bg$fa65y8^1-h#cat6pcfynw+iqqkcu0u4gc73sqf)ovu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -40,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'myspotify.apps.MyspotifyConfig',
+    'frontend.apps.FrontendConfig',
     'django_filters',
     'knox',
     # 'django_rest_passwordreset',
@@ -58,6 +58,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'mymusic.urls'
+
 
 TEMPLATES = [
     {
@@ -135,6 +136,7 @@ AUTH_USER_MODEL = 'myspotify.CustomUser'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
@@ -146,6 +148,9 @@ REST_FRAMEWORK = {
         'rest_framework.filters.SearchFilter',
         'django_filters.rest_framework.DjangoFilterBackend',
     ),
+    'DEFAULT_RENDERER_CLASSES': (
+            'rest_framework.renderers.JSONRenderer',
+        ),
     "EXCEPTION_HANDLER": "myspotify.exceptions.django_error_handler",
 }
 
